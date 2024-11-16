@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: backend_app
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - MONGO_URI=mongodb+srv://chyrupesh828:JfuCuKXQMeA6sqhv@cluster0.frexq.mongodb.net/buggyman?retryWrites=true&w=majority&appName=Cluster0
+      - JWT_SECRET=aklejfajefreeasd
+      - USER_EMAIL=rchy54340@gmail.com
+      - EMAIL_PASS=afkc dzji rgmr ryqg
+   
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
